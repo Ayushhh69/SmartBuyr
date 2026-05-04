@@ -117,7 +117,7 @@ def _fetch(url: str, params: dict = None, retries: int = 3) -> Optional[Beautifu
                 timeout=15, allow_redirects=True
             )
             if resp.status_code == 200:
-                soup = BeautifulSoup(resp.content, "lxml")
+                soup = BeautifulSoup(resp.content, "html.parser")
                 # Detect CAPTCHA / bot block pages
                 page_title = soup.find("title")
                 if page_title and "robot" in page_title.get_text().lower():

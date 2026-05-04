@@ -113,7 +113,7 @@ def _fetch(url: str, params: dict = None, retries: int = 3) -> Optional[Beautifu
                 timeout=15, allow_redirects=True
             )
             if resp.status_code == 200:
-                soup = BeautifulSoup(resp.content, "lxml")
+                soup = BeautifulSoup(resp.content, "html.parser")
                 # ✅ FIX: Detect login/bot redirect
                 if soup.find("form", {"action": re.compile("login")}):
                     logger.warning("Flipkart redirected to login — bot detected")
