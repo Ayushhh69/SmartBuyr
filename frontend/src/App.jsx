@@ -87,7 +87,7 @@ const MOCK_REVIEWS = [
 // ── Utils ─────────────────────────────────────────────────────────────────────
 const fmt = (n) => n ? "₹" + Number(n).toLocaleString("en-IN") : "—";
 const pct = (a, b) => b ? ((a - b) / b * 100).toFixed(1) : 0;
-const API_BASE = "http://localhost:8000";
+const API_BASE = import.meta.env.PROD ? "" : "http://localhost:8000";
 
 // ── Shared UI ─────────────────────────────────────────────────────────────────
 function Stars({ rating, size = 14 }) {
