@@ -14,7 +14,7 @@ app.add_middleware(
     # ✅ FIX: Added ports 5174 and 5175 — Vite picks whichever is free,
     #         so we allow the full typical range.
     allow_origins=[
-        "https://smart-buyr-vssa.vercel.app/"
+        "https://smart-buyr-vssa.vercel.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
