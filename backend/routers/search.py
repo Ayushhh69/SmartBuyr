@@ -34,25 +34,35 @@ def _cache_key(query: str) -> str:
 
 async def _get_cache(query: str) -> Optional[list]:
     db = get_db()
-    key = _cache_key(query)
-    doc = await db.search_cache.find_one({"_id": key})
-    if not doc:
+    if db is None:
         return None
-    age = datetime.utcnow() - doc["cached_at"]
-    if age > timedelta(minutes=CACHE_TTL_MINUTES):
-        await db.search_cache.delete_one({"_id": key})
+    try:
+        key = _cache_key(query)
+        doc = await db.search_cache.find_one({"_id": key})
+        if not doc:
+            return None
+        age = datetime.utcnow() - doc["cached_at"]
+        if age > timedelta(minutes=CACHE_TTL_MINUTES):
+            await db.search_cache.delete_one({"_id": key})
+            return None
+        return doc["results"]
+    except Exception:
         return None
-    return doc["results"]
 
 
 async def _set_cache(query: str, results: list):
     db = get_db()
-    key = _cache_key(query)
-    await db.search_cache.replace_one(
-        {"_id": key},
-        {"_id": key, "query": query, "results": results, "cached_at": datetime.utcnow()},
-        upsert=True,
-    )
+    if db is None:
+        return
+    try:
+        key = _cache_key(query)
+        await db.search_cache.replace_one(
+            {"_id": key},
+            {"_id": key, "query": query, "results": results, "cached_at": datetime.utcnow()},
+            upsert=True,
+        )
+    except Exception as e:
+        logger.debug(f"Cache save error: {e}")
 
 
 async def _run_in_executor(fn, *args):
@@ -155,6 +165,8 @@ async def _persist_products(results: list):
     in the main catalogue and can have price history tracked.
     """
     db = get_db()
+    if db is None:
+        return
     for r in results:
         if not r.get("price"):
             continue
@@ -215,12 +227,17 @@ async def search_suggestions(q: str = Query(..., min_length=1)):
     Return recent search queries from the cache for autocomplete.
     """
     db = get_db()
-    cursor = db.search_cache.find(
-        {"query": {"$regex": f"^{q}", "$options": "i"}},
-        {"query": 1}
-    ).sort("cached_at", -1).limit(6)
-    docs = [d["query"] async for d in cursor]
-    return {"suggestions": docs}
+    if db is None:
+        return {"suggestions": []}
+    try:
+        cursor = db.search_cache.find(
+            {"query": {"$regex": f"^{q}", "$options": "i"}},
+            {"query": 1}
+        ).sort("cached_at", -1).limit(6)
+        docs = [d["query"] async for d in cursor]
+        return {"suggestions": docs}
+    except Exception:
+        return {"suggestions": []}
 
 
 @router.delete("/cache")
