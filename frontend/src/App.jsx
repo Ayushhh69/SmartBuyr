@@ -127,7 +127,7 @@ function SourceChip({ source }) {
 function NavBar({ page, setPage, onLiveSearch }) {
   const [val, setVal] = useState("");
   return (
-    <nav style={{
+    <nav className="nav-bar" style={{
       position: "sticky", top: 0, zIndex: 200,
       background: "rgba(8,8,12,0.85)", backdropFilter: "blur(20px)",
       borderBottom: "1px solid rgba(255,255,255,0.06)",
@@ -145,7 +145,7 @@ function NavBar({ page, setPage, onLiveSearch }) {
       </div>
 
       {/* Search */}
-      <div style={{ flex: 1, maxWidth: 560, position: "relative" }}>
+      <div className="nav-search" style={{ flex: 1, maxWidth: 560, position: "relative" }}>
         <svg style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)" }} width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="2"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" /></svg>
         <input value={val} onChange={e => setVal(e.target.value)}
           onKeyDown={e => { if (e.key === "Enter" && val.trim()) { onLiveSearch(val.trim()); } }}
@@ -162,7 +162,7 @@ function NavBar({ page, setPage, onLiveSearch }) {
       </div>
 
       {/* Nav links */}
-      <div style={{ display: "flex", gap: 4, marginLeft: "auto" }}>
+      <div className="nav-links" style={{ display: "flex", gap: 4, marginLeft: "auto" }}>
         {[["home", "Home"], ["livesearch", "Live Search"], ["alerts", "Alerts"], ["compare", "Compare"]].map(([k, label]) => (
           <button key={k} onClick={() => setPage(k)} style={{
             background: page === k ? "rgba(110,231,183,0.12)" : "transparent",
@@ -392,9 +392,9 @@ function ProductDetailPage({ product, onBack }) {
         </button>
       </div>
 
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "36px 40px" }}>
+      <div className="product-detail-container" style={{ maxWidth: 1100, margin: "0 auto", padding: "36px 40px" }}>
         {/* Hero section */}
-        <div style={{ display: "grid", gridTemplateColumns: "400px 1fr", gap: 40, marginBottom: 40 }}>
+        <div className="product-detail-hero" style={{ display: "grid", gridTemplateColumns: "400px 1fr", gap: 40, marginBottom: 40 }}>
           {/* Image */}
           <div style={{ borderRadius: 20, overflow: "hidden", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", aspectRatio: "1/1", display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
             {image
@@ -541,7 +541,7 @@ function SearchResultCard({ item, onClick }) {
       </div>
 
       {/* Info */}
-      <div style={{ padding: 14, display: "flex", flexDirection: "column", gap: 8, flex: 1 }}>
+      <div className="main-content" style={{ padding: 14, display: "flex", flexDirection: "column", gap: 8, flex: 1 }}>
         <div style={{
           fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.85)", lineHeight: 1.4,
           display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", fontFamily: "Satoshi, sans-serif"
@@ -713,7 +713,7 @@ function LiveSearchPage({ initialQuery, setSearch, onViewProduct }) {
 
       {/* Prompt chips */}
       {!loading && !query && (
-        <div style={{ textAlign: "center", padding: "60px 0" }}>
+        <div className="hero-section" style={{ textAlign: "center", padding: "60px 0" }}>
           <div style={{ fontSize: 56, marginBottom: 16 }}>🛒</div>
           <div style={{ fontSize: 24, fontWeight: 700, color: "#fff", fontFamily: "Clash Display, sans-serif", marginBottom: 8 }}>Search Live Prices</div>
           <div style={{ color: "rgba(255,255,255,0.35)", marginBottom: 28, fontFamily: "Satoshi, sans-serif" }}>Results open inside SmartBuyr — compare, track, and set alerts without leaving</div>
