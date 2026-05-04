@@ -4,3 +4,6 @@ motor==3.4.0
 pymongo==4.7.3
 pydantic[email]==1.10.17
 python-dotenv==1.0.1
+requests==2.32.3
+beautifulsoup4==4.12.3
+lxml==5.2.2
