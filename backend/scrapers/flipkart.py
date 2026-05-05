@@ -105,12 +105,12 @@ def _clean_reviews(raw: str) -> Optional[int]:
     return None
 
 
-def _fetch(url: str, params: dict = None, retries: int = 3) -> Optional[BeautifulSoup]:
+def _fetch(url: str, params: dict = None, retries: int = 2) -> Optional[BeautifulSoup]:
     for attempt in range(retries):
         try:
             resp = requests.get(
                 url, params=params, headers=_headers(url),
-                timeout=15, allow_redirects=True
+                timeout=5, allow_redirects=True
             )
             if resp.status_code == 200:
                 soup = BeautifulSoup(resp.content, "html.parser")
@@ -120,16 +120,17 @@ def _fetch(url: str, params: dict = None, retries: int = 3) -> Optional[Beautifu
                     return None
                 return soup
             elif resp.status_code in (429, 503):
-                wait = 2 ** attempt + random.uniform(0.5, 2)
+                wait = random.uniform(0.5, 1.5)
                 logger.warning(f"Flipkart rate-limited (attempt {attempt+1}), waiting {wait:.1f}s")
-                time.sleep(wait)
+                if attempt < retries - 1:
+                    time.sleep(wait)
             else:
                 logger.warning(f"Flipkart returned {resp.status_code}")
                 return None
         except requests.RequestException as e:
             logger.error(f"Request error (attempt {attempt+1}): {e}")
             if attempt < retries - 1:
-                time.sleep(1.5 * (attempt + 1))
+                time.sleep(1.0)
     return None
 
 

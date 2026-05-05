@@ -58,6 +58,202 @@ const MOCK_PRODUCTS = [
       { seller_name: "Myntra", price: 12495, in_stock: true },
     ]
   },
+  {
+    _id: "5", name: "iPhone 15 Pro (256GB)", brand: "Apple", category: "Smartphones",
+    current_price: 134900, lowest_price: 129900, highest_price: 144900,
+    avg_rating: 4.7, review_count: 8502,
+    image_url: "https://images.unsplash.com/photo-1696446701796-da61225697cc?w=400&q=80",
+    tags: ["apple", "smartphone", "ios", "iphone"],
+    seller_prices: [
+      { seller_name: "Amazon", price: 134900, in_stock: true },
+      { seller_name: "Flipkart", price: 135900, in_stock: true },
+      { seller_name: "Apple Store", price: 144900, in_stock: true }
+    ]
+  },
+  {
+    _id: "6", name: "Dyson V15 Detect Absolute", brand: "Dyson", category: "Home Appliances",
+    current_price: 64900, lowest_price: 59900, highest_price: 69900,
+    avg_rating: 4.5, review_count: 1244,
+    image_url: "https://images.unsplash.com/photo-1558317374-067fb5f30001?w=400&q=80",
+    tags: ["vacuum", "home", "dyson"],
+    seller_prices: [
+      { seller_name: "Amazon", price: 64900, in_stock: true },
+      { seller_name: "Dyson.in", price: 65900, in_stock: true }
+    ]
+  },
+  {
+    _id: "7", name: "Logitech MX Master 3S", brand: "Logitech", category: "Accessories",
+    current_price: 8995, lowest_price: 7495, highest_price: 10995,
+    avg_rating: 4.9, review_count: 10452,
+    image_url: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&q=80",
+    tags: ["mouse", "wireless", "ergonomic"],
+    seller_prices: [
+      { seller_name: "Amazon", price: 8995, in_stock: true },
+      { seller_name: "Flipkart", price: 9295, in_stock: true }
+    ]
+  },
+  {
+    _id: "8", name: "Dell XPS 15", brand: "Dell", category: "Laptops",
+    current_price: 189000, lowest_price: 175000, highest_price: 195000,
+    avg_rating: 4.6, review_count: 856,
+    image_url: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400&q=80",
+    tags: ["laptop", "windows", "dell"],
+    seller_prices: [
+      { seller_name: "Dell.com", price: 189000, in_stock: true },
+      { seller_name: "Amazon", price: 185000, in_stock: false }
+    ]
+  },
+  {
+    _id: "9", name: "Bose QuietComfort Earbuds II", brand: "Bose", category: "Electronics",
+    current_price: 22999, lowest_price: 19999, highest_price: 25999,
+    avg_rating: 4.5, review_count: 3200,
+    image_url: "https://images.unsplash.com/photo-1606220588913-b3eea405b637?w=400&q=80",
+    tags: ["earbuds", "noise-cancelling", "audio"],
+    seller_prices: [
+      { seller_name: "Amazon", price: 22999, in_stock: true },
+      { seller_name: "Croma", price: 23500, in_stock: true }
+    ]
+  },
+  {
+    _id: "10", name: "Sony PlayStation 5 Console", brand: "Sony", category: "Gaming",
+    current_price: 54990, lowest_price: 44990, highest_price: 54990,
+    avg_rating: 4.9, review_count: 24500,
+    image_url: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400&q=80",
+    tags: ["gaming", "console", "ps5"],
+    seller_prices: [
+      { seller_name: "Amazon", price: 54990, in_stock: true },
+      { seller_name: "Flipkart", price: 54990, in_stock: true },
+      { seller_name: "Sony Center", price: 54990, in_stock: true }
+    ]
+  },
+  {
+    _id: "11", name: "Microsoft Xbox Series X", brand: "Microsoft", category: "Gaming",
+    current_price: 49990, lowest_price: 45990, highest_price: 55990,
+    avg_rating: 4.8, review_count: 14200,
+    image_url: "https://images.unsplash.com/photo-1621259182978-fbf93132d53d?w=400&q=80",
+    tags: ["gaming", "console", "xbox"],
+    seller_prices: [
+      { seller_name: "Amazon", price: 49990, in_stock: true },
+      { seller_name: "Flipkart", price: 51990, in_stock: true }
+    ]
+  },
+  {
+    _id: "12", name: "Nintendo Switch OLED", brand: "Nintendo", category: "Gaming",
+    current_price: 32999, lowest_price: 28999, highest_price: 35999,
+    avg_rating: 4.7, review_count: 11050,
+    image_url: "https://images.unsplash.com/photo-1617393433503-455bda4f8101?w=400&q=80",
+    tags: ["gaming", "handheld", "switch"],
+    seller_prices: [
+      { seller_name: "Amazon", price: 32999, in_stock: true }
+    ]
+  },
+  {
+    _id: "13", name: "Instant Pot Duo 7-in-1", brand: "Instant Pot", category: "Home Appliances",
+    current_price: 8999, lowest_price: 6999, highest_price: 11999,
+    avg_rating: 4.6, review_count: 45200,
+    image_url: "https://images.unsplash.com/photo-1585237882200-c081e74f32b1?w=400&q=80",
+    tags: ["cooking", "kitchen", "smart"],
+    seller_prices: [
+      { seller_name: "Amazon", price: 8999, in_stock: true }
+    ]
+  },
+  {
+    _id: "14", name: "Ninja Air Fryer AF101", brand: "Ninja", category: "Home Appliances",
+    current_price: 11999, lowest_price: 9999, highest_price: 14999,
+    avg_rating: 4.8, review_count: 32000,
+    image_url: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400&q=80",
+    tags: ["cooking", "kitchen", "airfryer"],
+    seller_prices: [
+      { seller_name: "Amazon", price: 11999, in_stock: true },
+      { seller_name: "Flipkart", price: 12499, in_stock: true }
+    ]
+  },
+  {
+    _id: "15", name: "Apple Watch Series 9", brand: "Apple", category: "Wearables",
+    current_price: 41900, lowest_price: 38900, highest_price: 44900,
+    avg_rating: 4.8, review_count: 7500,
+    image_url: "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=400&q=80",
+    tags: ["watch", "apple", "smartwatch"],
+    seller_prices: [
+      { seller_name: "Amazon", price: 41900, in_stock: true },
+      { seller_name: "Apple Store", price: 41900, in_stock: true }
+    ]
+  },
+  {
+    _id: "16", name: "Samsung Galaxy S24 Ultra", brand: "Samsung", category: "Smartphones",
+    current_price: 129999, lowest_price: 119999, highest_price: 134999,
+    avg_rating: 4.7, review_count: 4200,
+    image_url: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=400&q=80",
+    tags: ["samsung", "smartphone", "android"],
+    seller_prices: [
+      { seller_name: "Amazon", price: 129999, in_stock: true },
+      { seller_name: "Samsung Store", price: 129999, in_stock: true }
+    ]
+  },
+  {
+    _id: "17", name: "Garmin Fenix 7 Sapphire Solar", brand: "Garmin", category: "Wearables",
+    current_price: 84990, lowest_price: 79990, highest_price: 89990,
+    avg_rating: 4.9, review_count: 1800,
+    image_url: "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=400&q=80",
+    tags: ["watch", "fitness", "garmin"],
+    seller_prices: [
+      { seller_name: "Amazon", price: 84990, in_stock: true }
+    ]
+  },
+  {
+    _id: "18", name: "Kindle Paperwhite (16 GB)", brand: "Amazon", category: "Electronics",
+    current_price: 14999, lowest_price: 11999, highest_price: 14999,
+    avg_rating: 4.8, review_count: 15400,
+    image_url: "https://images.unsplash.com/photo-1592496001020-d31bd830651f?w=400&q=80",
+    tags: ["ereader", "books", "amazon"],
+    seller_prices: [
+      { seller_name: "Amazon", price: 14999, in_stock: true },
+      { seller_name: "Croma", price: 14999, in_stock: true }
+    ]
+  },
+  {
+    _id: "19", name: "Philips Hue White & Color Ambiance", brand: "Philips", category: "Smart Home",
+    current_price: 12999, lowest_price: 9999, highest_price: 14999,
+    avg_rating: 4.6, review_count: 8200,
+    image_url: "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=400&q=80",
+    tags: ["lighting", "smart", "philips"],
+    seller_prices: [
+      { seller_name: "Amazon", price: 12999, in_stock: true }
+    ]
+  },
+  {
+    _id: "20", name: "GoPro HERO12 Black", brand: "GoPro", category: "Cameras",
+    current_price: 34990, lowest_price: 29990, highest_price: 40990,
+    avg_rating: 4.5, review_count: 2300,
+    image_url: "https://images.unsplash.com/photo-1502982720700-baf979f7104e?w=400&q=80",
+    tags: ["camera", "action", "video"],
+    seller_prices: [
+      { seller_name: "Amazon", price: 34990, in_stock: true },
+      { seller_name: "Flipkart", price: 35990, in_stock: true }
+    ]
+  },
+  {
+    _id: "21", name: "LG C3 55\" OLED evo 4K TV", brand: "LG", category: "Televisions",
+    current_price: 139990, lowest_price: 119990, highest_price: 159990,
+    avg_rating: 4.9, review_count: 1150,
+    image_url: "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=400&q=80",
+    tags: ["tv", "oled", "4k", "lg"],
+    seller_prices: [
+      { seller_name: "Amazon", price: 139990, in_stock: true },
+      { seller_name: "Reliance Digital", price: 142990, in_stock: true }
+    ]
+  },
+  {
+    _id: "22", name: "Secretlab Titan Evo 2022", brand: "Secretlab", category: "Furniture",
+    current_price: 44900, lowest_price: 39900, highest_price: 49900,
+    avg_rating: 4.7, review_count: 5600,
+    image_url: "https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=400&q=80",
+    tags: ["chair", "gaming", "ergonomic"],
+    seller_prices: [
+      { seller_name: "Secretlab", price: 44900, in_stock: true },
+      { seller_name: "Amazon", price: 46900, in_stock: false }
+    ]
+  }
 ];
 
 function generatePriceHistory(basePrice, days = 90) {

@@ -97,9 +97,26 @@ async def live_search(
     Search Amazon.in and/or Flipkart.com and return merged results.
     Results are cached in MongoDB for 30 minutes per query.
     """
+    import re
     q = q.strip()
     if not q:
         raise HTTPException(400, "Query cannot be empty")
+
+    # ── Handle URLs ────────────────────────────────────────────────────────────
+    q_lower = q.lower()
+    if "amazon" in q_lower and ("http://" in q_lower or "https://" in q_lower):
+        m = re.search(r"/(?:dp|d|product)/([A-Z0-9]{10})", q)
+        if not m:
+            m = re.search(r"[?&]v?asin=([A-Z0-9]{10})", q_lower)
+        if m:
+            q = m.group(1)
+            source = "amazon"
+            
+    elif "flipkart.com" in q_lower and ("http://" in q_lower or "https://" in q_lower):
+        m = re.search(r"[?&]pid=([A-Z0-9]{16})", q)
+        if m:
+            q = m.group(1)
+            source = "flipkart"
 
     # ── Cache hit ──────────────────────────────────────────────────────────────
     cache_key_full = f"{q}:{source}:{max_results}"

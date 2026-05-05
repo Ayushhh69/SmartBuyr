@@ -108,13 +108,13 @@ def _extract_asin(url: str) -> Optional[str]:
     return m.group(1) if m else None
 
 
-def _fetch(url: str, params: dict = None, retries: int = 3) -> Optional[BeautifulSoup]:
+def _fetch(url: str, params: dict = None, retries: int = 2) -> Optional[BeautifulSoup]:
     """Fetch a URL with retries and return a BeautifulSoup object."""
     for attempt in range(retries):
         try:
             resp = requests.get(
                 url, params=params, headers=_headers(),
-                timeout=15, allow_redirects=True
+                timeout=5, allow_redirects=True
             )
             if resp.status_code == 200:
                 soup = BeautifulSoup(resp.content, "html.parser")
@@ -126,14 +126,15 @@ def _fetch(url: str, params: dict = None, retries: int = 3) -> Optional[Beautifu
                 return soup
             elif resp.status_code == 503:
                 logger.warning(f"Amazon returned 503 (attempt {attempt+1}/{retries}) — backing off")
-                time.sleep(2 ** attempt + random.uniform(0.5, 1.5))
+                if attempt < retries - 1:
+                    time.sleep(random.uniform(0.5, 1.5))
             else:
                 logger.warning(f"Amazon returned {resp.status_code}")
                 return None
         except requests.RequestException as e:
             logger.error(f"Request failed (attempt {attempt+1}): {e}")
             if attempt < retries - 1:
-                time.sleep(1.5 * (attempt + 1))
+                time.sleep(1.0)
     return None
 
 
