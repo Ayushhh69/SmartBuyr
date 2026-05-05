@@ -150,14 +150,16 @@ def _parse_product_card(card) -> Optional[AmazonProduct]:
 
         # Title
         title_el = (
-            card.select_one("h2 a span") or
-            card.select_one('[data-cy="title-recipe"] span') or
-            card.select_one(".s-title-instructions-style span")
+            card.select_one("h2 a") or
+            card.select_one("h2") or
+            card.select_one('[data-cy="title-recipe"] h2')
         )
         if not title_el:
             return None
         title = title_el.get_text(strip=True)
-        if not title or len(title) < 5:
+        # Sometimes Amazon puts 'Sponsored' inside h2 if not careful
+        title = title.replace("Sponsored", "").strip()
+        if not title or len(title) < 4:
             return None
 
         # URL
